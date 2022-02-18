@@ -1,0 +1,43 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  HANAPRIMARYHOST:
+    Description: "SAP HANA Primary Host Instance ID"
+    Type: String
+  
+  HANASECONDARYHOST:
+    Description: "SAP HANA Secondary Host Instance ID"
+    Type: String
+
+  S3Bucket:
+    Description: "S3 Bucket of monitoring template"
+    Type: String
+
+Resources:
+  HANACusterStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - IAMROLEstack
+    Properties:
+      Parameters:                # optional, map of String
+        HANAPRIMARYHOST: !Ref HANAPRIMARYHOST
+        HANASECONDARYHOST: !Ref HANASECONDARYHOST
+      TemplateURL: !Sub "https://${S3Bucket}.s3.cn-northwest-1.amazonaws.com.cn/hanaclustermon.yaml"     # required
+      TimeoutInMinutes: 10     # optional
+
+DashboardStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:                # optional, map of String
+        HANAPRIMARYHOST: !Ref HANAPRIMARYHOST
+        HANASECONDARYHOST: !Ref HANASECONDARYHOST
+      #  SAPSID: !Ref SAPSID
+      TemplateURL: !Sub "https://${S3Bucket}.s3.cn-northwest-1.amazonaws.com.cn/hanacluster_cloudwatch.yaml"     # required
+      TimeoutInMinutes: 10
+
+IAMROLEstack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://${S3Bucket}.s3.cn-northwest-1.amazonaws.com.cn/roles.yaml"     # required
+      TimeoutInMinutes: 10

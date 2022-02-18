@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "cloudwatch:*",
+            "Resource": "*",
+            "Effect": "Allow",
+            "Sid": "AllowCloudwatchAccess"
+        },
+        {
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Effect": "Allow",
+            "Sid": "IAMPass"
+        }
+    ]
+}
