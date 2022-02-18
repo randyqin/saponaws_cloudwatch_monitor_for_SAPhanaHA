@@ -1,5 +1,6 @@
 # saponaws_cloudwatch_monitor_for_SAPhanaHA
-monitor SAP HANA/Cluster status leverging Amazon EventBridge and 
+monitor SAP HANA/Cluster status leverging Amazon EventBridge and CloudWatch custom metics, 
+also set Amazon CloudWatch Alarm Notification to SNS
 # Overview
 
 # Architecture
@@ -11,5 +12,7 @@ monitor SAP HANA/Cluster status leverging Amazon EventBridge and
 2. SSM agent
 
 # How to use
+1. CloudFomration Template
+2. AWS Cli scripts
 
 # Others
