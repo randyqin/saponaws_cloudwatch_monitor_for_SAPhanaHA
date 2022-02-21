@@ -24,7 +24,6 @@ Resources:
             inputs:
               runCommand:
                 - INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
-                ###get HANA SID
                 - DBSID=$(grep -o ''pf=[^[:space:]]*'' /usr/sap/sapservices | grep _HDB|awk -F "/" '{print $4}')
                 - SIDLOWER=$(echo ${DBSID,,})
                 - echo $SIDLOWER
@@ -99,13 +98,13 @@ Resources:
     Type: AWS::Events::Rule
     Properties:
       Description: "The ARN from the eventbridge role resource"
-      RoleArn: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/EVENT-RULE-ROLE"
+      RoleArn: !Sub "arn:aws-cn:iam::${AWS::AccountId}:role/EVENT-RULE-ROLE"
       ScheduleExpression: rate(1 minute)
       State: ENABLED
       Targets:
         - Id: HANAClusID
           Arn: !Sub "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:document/${SSMRunCommandDocument}"
-          RoleArn: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/SSM-DOCUMENT-ROLE"
+          RoleArn: !Sub "arn:aws-cn:iam::${AWS::AccountId}:role/SSM-DOCUMENT-ROLE"
           RunCommandParameters:
             RunCommandTargets:
              - Key: InstanceIds

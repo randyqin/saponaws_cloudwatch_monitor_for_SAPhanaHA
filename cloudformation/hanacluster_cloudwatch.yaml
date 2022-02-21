@@ -109,7 +109,7 @@ Resources:
                       "properties": {
                         "metrics": [
                             [ "AWS/EC2", "CPUUtilization", "InstanceId", "${HANAPRIMARYHOST}" ],
-                            [ "AWS/EC2", "CPUUtilization", "InstanceId", "${HANASECONDARYHOST}" ],
+                            [ "AWS/EC2", "CPUUtilization", "InstanceId", "${HANASECONDARYHOST}" ]
                         ],
                           "region": "cn-northwest-1",
                           "stat": "Average",

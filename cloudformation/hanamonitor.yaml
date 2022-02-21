@@ -14,6 +14,10 @@ Parameters:
     Description: "S3 Bucket of monitoring template"
     Type: String
 
+  S3BucketRegion:
+    Description: "S3 Bucket Region, cn-northwest-1(Ningxia) or cn-north-1(Beijing)"
+    Type: String
+
 Resources:
   HANACusterStack:
     Type: AWS::CloudFormation::Stack
@@ -23,7 +27,7 @@ Resources:
       Parameters:                # optional, map of String
         HANAPRIMARYHOST: !Ref HANAPRIMARYHOST
         HANASECONDARYHOST: !Ref HANASECONDARYHOST
-      TemplateURL: !Sub "https://${S3Bucket}.s3.cn-northwest-1.amazonaws.com.cn/hanaclustermon.yaml"     # required
+      TemplateURL: !Sub "https://${S3Bucket}.s3.${S3BucketRegion}..amazonaws.com.cn/hanaclustermon.yaml"     # required
       TimeoutInMinutes: 10     # optional
 
 DashboardStack:
@@ -33,11 +37,11 @@ DashboardStack:
         HANAPRIMARYHOST: !Ref HANAPRIMARYHOST
         HANASECONDARYHOST: !Ref HANASECONDARYHOST
       #  SAPSID: !Ref SAPSID
-      TemplateURL: !Sub "https://${S3Bucket}.s3.cn-northwest-1.amazonaws.com.cn/hanacluster_cloudwatch.yaml"     # required
+      TemplateURL: !Sub "https://${S3Bucket}.s3.${S3BucketRegion}.amazonaws.com.cn/hanacluster_cloudwatch.yaml"     # required
       TimeoutInMinutes: 10
 
 IAMROLEstack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub "https://${S3Bucket}.s3.cn-northwest-1.amazonaws.com.cn/roles.yaml"     # required
+      TemplateURL: !Sub "https://${S3Bucket}.s3.${S3BucketRegion}.amazonaws.com.cn/iamroles.yaml"     # required
       TimeoutInMinutes: 10

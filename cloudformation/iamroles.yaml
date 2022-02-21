@@ -6,49 +6,52 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: 2012-10-17
+        Version: '2012-10-17'
         Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-              - events.amazonaws.com
-            Action:
-              - 'sts:AssumeRole'
-      Path: /     # optional
-      Policies:                # optional, list of Policy
+        - Effect: Allow
+          Principal:
+            Service:
+            - events.amazonaws.com
+          Action:
+            - sts:AssumeRole
+      Path: /     
+      Policies:                
         - PolicyName: ssmroot
           PolicyDocument:
-            Version: 2012-10-17
+            Version: '2012-10-17'
             Statement:
               - Effect: Allow
-                Action: ssm:SendCommand
+                Action:
+                  - 'ssm:SendCommand'
                 Resource: "*"
-      RoleName: SSM-DOCUMENT-ROLE     # optional
+      RoleName: SSM-DOCUMENT-ROLE
 
   EventRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: 2012-10-17
+        Version: '2012-10-17'
         Statement:
           - Effect: Allow
             Principal:
               Service:
               - events.amazonaws.com
             Action:
-              - 'sts:AssumeRole'
-      Path: /    # optional
-      Policies:                # optional, list of Policy
+              - sts:AssumeRole
+      Path: /    
+      Policies:
         - PolicyName: eventroot
           PolicyDocument:
-            Version: 2012-10-17
+            Version: '2012-10-17'
             Statement:
               - Sid: AllowCloudwatchAccess
                 Effect: Allow
-                Action: cloudwatch:*
+                Action: 
+                  - 'cloudwatch:*'
                 Resource: "*"
               - Sid: IAMPass
                 Effect: Allow
-                Action: iam:PassRole
+                Action: 
+                  - 'iam:PassRole'
                 Resource: "*"
       RoleName: EVENT-RULE-ROLE
