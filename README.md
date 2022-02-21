@@ -12,7 +12,12 @@ also set Amazon CloudWatch Alarm Notification to SNS
 2. SSM agent
 
 # How to use
-1. CloudFomration Template
-2. AWS Cli scripts
+CloudFomration Template （in cloudformation folder）
+Step1:
+  upload cloudformation template to your S3 (ZHY or BJS)
+Step2:
+  excute hanamonitor.yaml with related parameters
+
+AWS Cli scripts(in develop)
 
 # Others
