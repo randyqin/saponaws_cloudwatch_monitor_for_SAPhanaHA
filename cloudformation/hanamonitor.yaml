@@ -27,7 +27,7 @@ Resources:
       Parameters:                # optional, map of String
         HANAPRIMARYHOST: !Ref HANAPRIMARYHOST
         HANASECONDARYHOST: !Ref HANASECONDARYHOST
-      TemplateURL: !Sub "https://${S3Bucket}.s3.${S3BucketRegion}..amazonaws.com.cn/hanaclustermon.yaml"     # required
+      TemplateURL: !Sub "https://${S3Bucket}.s3.${S3BucketRegion}.amazonaws.com.cn/hanaclustermon.yaml"     # required
       TimeoutInMinutes: 10     # optional
 
 DashboardStack:
