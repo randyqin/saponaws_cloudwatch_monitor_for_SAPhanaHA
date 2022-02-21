@@ -13,11 +13,7 @@ also set Amazon CloudWatch Alarm Notification to SNS
 
 # How to use
 CloudFomration Template （in cloudformation folder）
-Step1:
-  upload cloudformation template to your S3 (ZHY or BJS)
-Step2:
-  excute hanamonitor.yaml with related parameters
-
-AWS Cli scripts(in develop)
+Step1:upload cloudformation template to your S3 (ZHY or BJS)
+Step2:excute hanamonitor.yaml with related parameters
 
 # Others
